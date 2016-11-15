@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="App">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#signupModal">Signup</a></li>
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="/auth/google">Gmail</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container" ng-controller="Ctrl as ctrl">
+      <div class="jumbotron">
+        Here we are
+      </div>
+      <div ng-repeat="item in ctrl.items" class="item-list">
+        <li ng-model="item.name"></li>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="loginLabel">LOG IN</h4>
+          </div>
+          <div class="modal-body">
+            <form class="" action="/login" method="post">
+              <div class="form-group">
+                <label for="email"></label>
+                <input type="email" class="form-control" id="" placeholder="Enter email" name="email">
+              </div>
+              <div class="form-group">
+                <label for="password"></label>
+                <input type="password" class="form-control" placeholder="Enter Password" name="password">
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg pull-right">Login</button>
+            </form>
+
+            <p>Need an account? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#signupModal">Signup</a></p>
+            <p>Or go <a href="/">home</a>.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="signupLabel">Signup</h4>
+          </div>
+          <div class="modal-body">
+            <form class="" action="/signup" method="post">
+              <div class="form-group">
+                <label for=""></label>
+                <input type="text" name="firstName" class="form-control" id="" placeholder="Enter First name" required>
+              </div>
+              <div class="form-group">
+                <label for=""></label>
+                <input type="text" name="lastName" class="form-control" id="" placeholder="Enter Last name" required>
+              </div>
+              <div class="form-group">
+                <label for=""></label>
+                <input type="email" name="email" class="form-control" id="" placeholder="Enter email" required>
+              </div>
+              <div class="form-group">
+                <label for=""></label>
+                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg pull-right">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Login</a></p>
+            <p>Or go <a href="/">home</a>.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
