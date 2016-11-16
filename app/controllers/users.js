@@ -24,19 +24,9 @@ module.exports = function Users(User){
     })
   };
 
-  var findByEmail = function(req, res, next) {
-    User.findByEmail(req.body.email, function(err, user) {
-      if(err) return res.status(500).json({ "error": err.message })
-      if(!user) return res.status(404).json({ "error": "User Not Found"});
-      req.user = user;
-      next();
-    })
-  };
-
   return {
     post: post,
     get: get,
-    findById: findById,
-    findByEmail: findByEmail
+    findById: findById
   }
 }

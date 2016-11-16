@@ -4,15 +4,12 @@ var express     = require('express'),
     session     = require('express-session'),
     bodyParser  = require('body-parser'),
     morgan      = require('morgan'),
-    passport    = require('passport')
-    db          = ""
+    passport    = require('passport'),
+    db          = "",
+    basePath    = __dirname  + '/public',
     config      = require('./config/config');
 
-app.use(express.static(__dirname + '/views'));
-
-app.get('/', function(req, res) {
-  res.sendFile('index.html')
-});
+app.use(express.static(basePath));
 
 db = config.db.url;
 if(process.env.NODE_ENV == "test") { db = config.db.test_url }
@@ -33,7 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Authentication routes
-require('./config/auth.js')(app, passport);
+require('./config/auth.js')(app, passport, basePath);
 require('./config/passport')(passport);
 
 app.use('/api', require('./routes.js'));

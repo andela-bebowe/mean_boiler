@@ -1,5 +1,5 @@
-var User = require('../models/user');
-var Users = require('../controllers/users')(User);
+var User = require('../models/user'),
+    Users = require('../controllers/users')(User);
 
 module.exports = function(router) {
   router.route('/users')

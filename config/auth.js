@@ -1,15 +1,11 @@
-module.exports = function(router, passport) {
+module.exports = function(router, passport, basePath) {
   router.post('/signup',
     passport.authenticate('local-signup', { failureRedirect: '/' }),
-    function(req, res) {
-      res.redirect('/profile');
-    }
+    function(req, res) { res.redirect('/profile'); }
   );
 
   router.get('/profile', isLoggedIn, function(req, res) {
-    res.render('profile.html', {
-      user: req.user
-    });
+    res.sendFile(basePath + '/profile.html');
   });
 
   router.get('/logout', isLoggedIn, function(req, res) {
@@ -19,7 +15,7 @@ module.exports = function(router, passport) {
 
   router.post('/login',
     passport.authenticate('local-login', { failureRedirect: '/' }),
-    function(req, res) { res.redirect('/profile');}
+    function(req, res) { res.redirect('/profile'); }
   );
 }
 

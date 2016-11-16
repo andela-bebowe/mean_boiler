@@ -17,25 +17,30 @@ module.exports = function(passport) {
 
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
-    passwordField: 'password'
+    passwordField: 'password',
+    passReqToCallback: true
   },
-  function(email, password, next) {
-    process.nextTick(function() {
-      User.findOne({ email: email }, function(err, user) {
-        if (err) { return next(err); }
-        else if (user) {
-          return next(null, false, { message: 'Email already in use.' });
-        }
-        else {
-          var user = new User({ email: email, password: password });
-          user.save(function(err, user) {
-            if (err)
-              throw err;
-              return next(null, user);
-          });
-        }
-      });
-    })
+  function(req, email, password, next) {
+    User.findOne({ email: email }, function(err, user) {
+      if (err) { return next(err); }
+      else if (user) {
+        return next(null, false, { message: 'Email already in use.' });
+      }
+      else {
+        var user = new User({
+          email: email,
+          password: password,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName
+        });
+
+        user.save(function(err, user) {
+          if (err)
+            throw err;
+            return next(null, user);
+        });
+      }
+    });
   }
   ));
 
